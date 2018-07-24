@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+body {
+  
+}
+.main {
+    display: -ms-flexbox;
+    display: flex;
+    height: 100vh;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 5%;
+    position: relative;
+    min-height: 500px;
+    background: url(back.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 0;
+    color: #fff;
+}
+.main:after {
+    content : "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    opacity : 0.5;
+    z-index: -2;
+}
+.find-form__button {
+    float: right;
+    cursor: pointer;
+    width: 158px;
+    height: 50px;
+    border-radius: 100px;
+    background-color: #ffcc31;
+    font-family: Soleil;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 3;
+    letter-spacing: .3px;
+    text-align: center;
+    color: #fff;
+}
+.find-form__button:hover {
+    cursor: pointer;
+    background-color: transparent;
+    border: 3px solid #ffcc31;
+    line-height: 2.7;
+     color: #ffcc31; 
+}
+.find-form__right {
+    width: 35%;
+}
+.find-form__restaurant-link {
+    width: 65%;
+    -ms-flex-align: left;
+    align-items: left;
+    display: -ms-flexbox;
+    display: flex;
+}
+.find-form__content {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+.find-form__restaurant-link u p {
+    margin: 0;
+    text-align: left;
+    line-height: 1.5;
+}
+.find-form__link-hero {
+    color: #fff;
+}
+.main-text p {
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+.main-text h1 {
+  font-family: 'Abril Fatface', cursive;
+  margin-bottom: 35px;
+}
+.find-form__link {
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    line-height: 2.14;
+    text-align: center;
+    color: #fff;
+}
+.find-form__link:hover {
+    color: #fff;
+}
+.search-div {
+    border: 3px solid #ffcc31;
+    border-radius: 20px;
+    background: rgba(0,0,0,.1);
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.search-div  input {
+    outline: none;
+    background-color: transparent;
+    border-top-style: initial;
+    border-right-style: solid;
+    border-bottom-style: initial;
+    border-left-style: initial;
+    border-top-color: initial;
+    border-right-color: transparent;
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image: initial;
+    border-radius: 0px;
+    padding: 7px 15px;
+    color: #fff;
+}
+.search-div > div:first-child input {
+    border-width: 0px 2px 0px 0px;
+    border-top-style: initial;
+    border-right-style: solid;
+    border-bottom-style: initial;
+    border-left-style: initial;
+    border-top-color: initial;
+    border-right-color: rgb(255, 204, 49);
+    border-bottom-color: initial;
+    border-left-color: initial;
+    border-image: initial;
+    border-radius: 0px;
+}
+.search-div > div:last-child, .search-div > div:last-child input {
+    width: 100%;
+}
+
+.search-div > div > div {
+    padding: 0!important;
+    margin-top: 5px;
+}
+.search-div > div > div > div {
+    padding: 5px 10px!important;
+    color: #000;
+}
+::-webkit-input-placeholder { 
+  color: #fff;
+}
+::-moz-placeholder { 
+  color: #fff;
+}
+:-ms-input-placeholder { 
+  color: #fff;
+}
+:-moz-placeholder { 
+  color: #fff;
+}
+.preloader {
+    display: -ms-flexbox;
+    display: flex;
+    height: 100vh;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+}
+.circle {
+    background-color: rgba(0,0,0,0);
+    border: 5px solid rgba(255,204,49,0.9);
+    opacity: .9;
+    border-right: 5px solid rgba(0,0,0,0);
+    border-left: 5px solid rgba(0,0,0,0);
+    border-radius: 50px;
+    box-shadow: 0 0 35px rgb(255,204,49);
+    width: 75px;
+    height: 75px;
+    margin: 0 auto;
+    -moz-animation: spinPulse 2s infinite ease-in-out;
+    -webkit-animation: spinPulse 2s infinite linear;
+}
+
+.circle1 {
+    background-color: rgba(0,0,0,0);
+    border: 5px solid rgba(255,204,49,0.9);
+    opacity: .9;
+    border-left: 5px solid rgba(0,0,0,0);
+    border-right: 5px solid rgba(0,0,0,0);
+    border-radius: 50px;
+    box-shadow: 0 0 15px rgb(255,204,49);
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    position: relative;
+    top: -62px;
+    -moz-animation: spinoffPulse 3s infinite linear;
+    -webkit-animation: spinoffPulse 3s infinite linear;
+}
+
+@-moz-keyframes spinPulse {
+    0% {
+        -moz-transform: rotate(160deg);
+        opacity: 0;
+        box-shadow: 0 0 1px #2187e7;
+    }
+
+    50% {
+        -moz-transform: rotate(145deg);
+        opacity: 1;
+    }
+
+    100% {
+        -moz-transform: rotate(-320deg);
+        opacity: 0;
+    };
+}
+
+@-moz-keyframes spinoffPulse {
+    0% {
+        -moz-transform: rotate(0deg);
+    }
+
+    100% {
+        -moz-transform: rotate(360deg);
+    };
+}
+
+@-webkit-keyframes spinPulse {
+    0% {
+        -webkit-transform: rotate(160deg);
+        opacity: 0;
+        box-shadow: 0 0 1px #2187e7;
+    }
+
+    50% {
+        -webkit-transform: rotate(145deg);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: rotate(-320deg);
+        opacity: 0;
+    };
+}
+
+@-webkit-keyframes spinoffPulse {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    };
+}
