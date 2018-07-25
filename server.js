@@ -21,7 +21,7 @@ db.on('open', function(){
 	    }
 	    else {
 	        names.forEach(function(el) {
-	            console.log(el.name);
+	            console.log(el);
 	        });
 	    }
 	});
