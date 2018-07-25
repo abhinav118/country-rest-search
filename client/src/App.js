@@ -30,6 +30,22 @@ class App extends Component {
     this.setState({
       valueRestorant: e.target.value
     });
+    // var json = [];
+    // this.state.data.forEach((el, index) => {
+    //   if (el.name.toLowerCase().indexOf(e.target.value.toLowerCase()) != -1) {
+    //     if (document.querySelector("#city").value.length != 0) {
+    //       if (el.country == document.querySelector("#city").value) {
+    //         json.push(this.state.data[index]);
+    //       }
+    //     }
+    //     else {
+    //       json.push(this.state.data[index]);
+    //     }
+    //   }
+    //   this.setState({
+    //     autocompleteData: json
+    //    });
+    // });
     fetch('/api/name?data='+e.target.value+'&city='+document.querySelector("#city").value+'')
     .then(res => res.json())
     .then(data => {
@@ -44,6 +60,15 @@ class App extends Component {
     this.setState({
       valueCity: e.target.value
     });
+    // var json = [];
+    // this.state.data.forEach((el, index) => {
+    //   if (el.name.toLowerCase().indexOf(e.target.value.toLowerCase()) != -1) {
+    //       json.push(this.state.data[index]);
+    //   }
+    //   this.setState({
+    //     autocompleteData: json
+    //    });
+    // });
     fetch('/api/country?data='+e.target.value+'')
     .then(res => res.json())
     .then(data => {
@@ -125,12 +150,6 @@ class App extends Component {
         <Grid>
           <Row>
             <Col md={8} sm={12}>
-              <div className="main-text">
-                <h1>Guests want to text your restaurant. So let them.</h1>
-                <p>Guestfriend is a personalized chatbot for your restaurant that instantly answers your guests’ questions on your website, Facebook, and via text. It builds itself in seconds and never needs to be updated.
-                </p>
-                <p>Don't believe us? See for yourself.</p>
-              </div>
               <div className="find-form__content">
                 <div className="search-div">
                   <Autocomplete
@@ -152,7 +171,6 @@ class App extends Component {
                         inputProps={{ placeholder: ('FIND YOUR RESTAURANT')}}
                     />
                 </div>
-                <div className="find-form__restaurant-link"><a className="find-form__link find-form__link-hero" aria-current="false" href="/"><u><p>Don't see your restaurant?</p><p>Let us build one for you</p></u></a></div>
                 <div className="find-form__right"><div className="find-form__button find-form__button-hero" onClick={this.goWidget}><div>See your bot now</div></div></div>
               </div>          
             </Col>  

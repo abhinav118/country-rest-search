@@ -57,7 +57,7 @@ body {
      color: #ffcc31; 
 }
 .find-form__right {
-    width: 35%;
+    width: 100%;
 }
 .find-form__restaurant-link {
     width: 65%;
@@ -260,4 +260,13 @@ body {
     100% {
         -webkit-transform: rotate(360deg);
     };
+}
+.widget {
+    display: flex;
+    height: 100vh;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: 600px;
 }
