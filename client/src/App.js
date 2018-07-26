@@ -49,7 +49,6 @@ class App extends Component {
     fetch('/api/name?data='+e.target.value+'&city='+document.querySelector("#city").value+'')
     .then(res => res.json())
     .then(data => {
-      console.log(data);
       this.setState({
         autocompleteData: data
       });

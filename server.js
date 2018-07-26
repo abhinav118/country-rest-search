@@ -48,7 +48,7 @@ app.get('/api/name', (req, res) => {
 });
 
 app.get('/api/country', (req, res) => {
-	finds('allmenus', [  {$match: { 'restaurant_info.city': new RegExp(req.query.city, "i") }},{ $group: { 
+	finds('allmenus', [  {$match: { 'restaurant_info.city': new RegExp(req.query.data, "i") }},{ $group: { 
 			_id: '$restaurant_info.city', 
 			restaurant_info: { $first: '$restaurant_info' } 
 		}
