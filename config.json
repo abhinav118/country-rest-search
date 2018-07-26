@@ -1,0 +1,9 @@
+{
+    "server": "ds036079.mlab.com",
+    "port": 36079,
+    "db":{
+        "name": "waitstaff",
+        "user": "waitstaff",
+        "password": "alanlol1212"
+    }
+}

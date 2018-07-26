@@ -49,6 +49,7 @@ class App extends Component {
     fetch('/api/name?data='+e.target.value+'&city='+document.querySelector("#city").value+'')
     .then(res => res.json())
     .then(data => {
+      console.log(data);
       this.setState({
         autocompleteData: data
       });
@@ -82,7 +83,7 @@ class App extends Component {
   onSelect (val) {
     this.setState({
         autocompleteData: []
-      });
+    });
     var s = val.split(' - ');
     this.setState({
       valueCity: s[1],
@@ -103,25 +104,25 @@ class App extends Component {
   renderItem(item, isHighlighted){
     return (
       <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
-        {item.name} - {item.country}
+        {item.restaurant_info.name} - {item.restaurant_info.city}, {item.restaurant_info.state}
       </div>   
     ); 
   }
   renderItemCity(item, isHighlighted){
     return (
       <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
-        {item.country}
+        {item.restaurant_info.city}, {item.restaurant_info.state}
       </div>   
     ); 
   }
 
   getItemValueCity(item){
-      return `${item.country}`;
+      return `${item.restaurant_info.city}, ${item.restaurant_info.state}`;
   }
 
   getItemValue(item){
     //
-      return `${item.name} - ${item.country}`;
+      return `${item.restaurant_info.name} - ${item.restaurant_info.city}, ${item.restaurant_info.state}`;
   }
   goWidget () {
     if (this.state.valueCity != "" && this.state.valueRestorant != "") {
