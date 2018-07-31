@@ -11,16 +11,17 @@ const mongoose = require('mongoose');
 
 const port = process.env.PORT || 5000;
 
-
+//connect mongodb
 mongoose.connect(`mongodb://${config.db.user}:${config.db.password}@${config.server}:${config.port}/${config.db.name}`);
 mongoose.Promise = global.Promise;
 
-
+//query to getting name restaurant (table from db ,name restaurant, callback)
 function find (name, query, cb) {
 	mongoose.connection.db.collection(name, function (err, collection) {
 		collection.find(query).toArray(cb);
 	});
 }
+//query to getting city (table from db ,name city, callback)
 function finds (name, query, cb) {
 	mongoose.connection.db.collection(name, function (err, collection) {
 		collection.aggregate(query).toArray(cb);
@@ -33,6 +34,7 @@ function finds (name, query, cb) {
 // 	});
 // }
 
+//address to getting from clients autocomplete restourant
 app.get('/api/name', (req, res) => {
 	if (req.query.city.length != 0) {
 		var s = req.query.city.split(',');
@@ -47,6 +49,7 @@ app.get('/api/name', (req, res) => {
 	}
 });
 
+//address to getting from clients autocomplete restourant
 app.get('/api/country', (req, res) => {
 	finds('allmenus', [  {$match: { 'restaurant_info.city': new RegExp(req.query.data, "i") }},{ $group: { 
 			_id: '$restaurant_info.city', 

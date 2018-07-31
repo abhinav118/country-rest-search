@@ -26,6 +26,7 @@ class App extends Component {
     this.renderItemCity = this.renderItemCity.bind(this);
     this.goWidget = this.goWidget.bind(this);
   }
+  //change restorant data
   onChange(e) {
     this.setState({
       valueRestorant: e.target.value
@@ -46,6 +47,8 @@ class App extends Component {
     //     autocompleteData: json
     //    });
     // });
+
+    //gete data from base
     fetch('/api/name?data='+e.target.value+'&city='+document.querySelector("#city").value+'')
     .then(res => res.json())
     .then(data => {
@@ -55,7 +58,7 @@ class App extends Component {
       
     })
   }
-
+  //change city data
   onChangeCity(e) {
     this.setState({
       valueCity: e.target.value
@@ -69,6 +72,8 @@ class App extends Component {
     //     autocompleteData: json
     //    });
     // });
+
+    //get data from base
     fetch('/api/country?data='+e.target.value+'')
     .then(res => res.json())
     .then(data => {
@@ -78,7 +83,7 @@ class App extends Component {
       
     })
   }
-
+  //event on select restorant data
   onSelect (val) {
     this.setState({
         autocompleteData: []
@@ -90,7 +95,7 @@ class App extends Component {
     });
 
   }
-
+  //event on select city data
   onSelectCity (val) {
     this.setState({
         autocompleteData: []
@@ -99,7 +104,7 @@ class App extends Component {
       valueCity: val
     });
   }
-
+  //template to render restorant data
   renderItem(item, isHighlighted){
     return (
       <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
@@ -107,6 +112,7 @@ class App extends Component {
       </div>   
     ); 
   }
+  //template to render city data
   renderItemCity(item, isHighlighted){
     return (
       <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
@@ -114,15 +120,19 @@ class App extends Component {
       </div>   
     ); 
   }
-
+  //data which entered on input when selected item
   getItemValueCity(item){
       return `${item.restaurant_info.city}, ${item.restaurant_info.state}`;
   }
 
+  //data which entered on input when selected item
   getItemValue(item){
     //
       return `${item.restaurant_info.name} - ${item.restaurant_info.city}, ${item.restaurant_info.state}`;
   }
+  
+  //show preloader and after show picture with phone
+
   goWidget () {
     if (this.state.valueCity != "" && this.state.valueRestorant != "") {
       this.setState({
