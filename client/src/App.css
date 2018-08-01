@@ -272,6 +272,6 @@ body {
 }
 @media only screen and (max-width: 768px) {
     .search-div > div:first-child input {
-        width: 95%;
+        width: 95%; 
     }
 }
