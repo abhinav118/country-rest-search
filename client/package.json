@@ -9,6 +9,7 @@
     "react-autocomplete": "^1.8.1",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
+    "react-native-cancelable-fetch": "^0.1.1",
     "react-scripts": "1.1.4"
   },
   "scripts": {

@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Navbar, NavItem, Nav, Grid, Row, Col } from "react-bootstrap";
 import Autocomplete from 'react-autocomplete';
 
+const fetch = require('react-native-cancelable-fetch');
+
 class App extends Component {
   constructor(props, context) {
       super(props, context);
@@ -13,7 +15,8 @@ class App extends Component {
         valueRestorant: "",
         autocompleteData: [
         ],
-        status: "main"
+        status: "main",
+        fetchStatus: false
      };
 
     this.onChange = this.onChange.bind(this);
@@ -25,11 +28,17 @@ class App extends Component {
     this.renderItem = this.renderItem.bind(this);
     this.renderItemCity = this.renderItemCity.bind(this);
     this.goWidget = this.goWidget.bind(this);
+    this.validate = this.validate.bind(this);
   }
   //change restorant data
   onChange(e) {
+    if (this.state.fetchStatus) {
+      fetch.abort(this);
+    }
     this.setState({
-      valueRestorant: e.target.value
+      valueRestorant: e.target.value,
+      fetchStatus: true,
+      autocompleteData: []
     });
     // var json = [];
     // this.state.data.forEach((el, index) => {
@@ -49,19 +58,25 @@ class App extends Component {
     // });
 
     //gete data from base
-    fetch('/api/name?data='+e.target.value+'&city='+document.querySelector("#city").value+'')
+    fetch('/api/name?data='+e.target.value+'&city='+document.querySelector("#city").value+'', null, this)
     .then(res => res.json())
     .then(data => {
       this.setState({
-        autocompleteData: data
+        autocompleteData: data,
+        fetchStatus: false
       });
       
     })
   }
   //change city data
   onChangeCity(e) {
+    if (this.state.fetchStatus) {
+      fetch.abort(this);
+    }
     this.setState({
-      valueCity: e.target.value
+      valueCity: e.target.value,
+      fetchStatus: true,
+      autocompleteData: []
     });
     // var json = [];
     // this.state.data.forEach((el, index) => {
@@ -74,7 +89,7 @@ class App extends Component {
     // });
 
     //get data from base
-    fetch('/api/country?data='+e.target.value+'')
+    fetch('/api/country?data='+e.target.value+'', null, this)
     .then(res => res.json())
     .then(data => {
       this.setState({
@@ -102,6 +117,11 @@ class App extends Component {
       });
     this.setState({
       valueCity: val
+    });
+  }
+  validate (e) {
+    this.setState({
+      autocompleteData: []
     });
   }
   //template to render restorant data
@@ -169,7 +189,7 @@ class App extends Component {
                         value={this.state.valueCity}
                         onChange={this.onChangeCity}
                         onSelect={this.onSelectCity}
-                        inputProps={{ placeholder: ('CITY'), id : ('city')}}
+                        inputProps={{ placeholder: ('CITY'), id : ('city'), onBlur: (this.validate), onFocus: (this.validate)}}
                     />
                     <Autocomplete
                         getItemValue={this.getItemValue}
@@ -178,7 +198,7 @@ class App extends Component {
                         value={this.state.valueRestorant}
                         onChange={this.onChange}
                         onSelect={this.onSelect}
-                        inputProps={{ placeholder: ('FIND YOUR RESTAURANT')}}
+                        inputProps={{ placeholder: ('FIND YOUR RESTAURANT'), onBlur: (this.validate), onFocus: (this.validate)}}
                     />
                 </div>
                 <div className="find-form__right"><div className="find-form__button find-form__button-hero" onClick={this.goWidget}><div>See your bot now</div></div></div>
