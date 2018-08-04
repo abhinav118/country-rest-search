@@ -103,10 +103,19 @@ class App extends Component {
     this.setState({
         autocompleteData: []
     });
-    var s = val.split(' - ');
+
+    var mass = this.state.autocompleteData.filter(item => item.restaurant_info.name.includes(val));
+    var city;
+    if (mass[0].restaurant_info.state && mass[0].restaurant_info.state.length > 0) {
+      city = mass[0].restaurant_info.city + ', ' + mass[0].restaurant_info.state;
+    }
+    else {
+      city = mass[0].restaurant_info.city;
+    }
+    //var s = val.split(' - ');
     this.setState({
-      valueCity: s[1],
-      valueRestorant: s[0]
+      valueCity: city,
+      valueRestorant: val
     });
 
   }
@@ -125,30 +134,46 @@ class App extends Component {
     });
   }
   //template to render restorant data
+  //{item.restaurant_info.name} - {item.restaurant_info.city}, {item.restaurant_info.state}
   renderItem(item, isHighlighted){
     return (
       <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
-        {item.restaurant_info.name} - {item.restaurant_info.city}, {item.restaurant_info.state}
+        {item.restaurant_info.name}
       </div>   
     ); 
   }
   //template to render city data
   renderItemCity(item, isHighlighted){
-    return (
-      <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
-        {item.restaurant_info.city}, {item.restaurant_info.state}
-      </div>   
-    ); 
+    if (item.restaurant_info.state && item.restaurant_info.state.length > 0) {
+      return (
+        <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+          {item.restaurant_info.city}, {item.restaurant_info.state}
+        </div>   
+      ); 
+    }
+    else {
+      return (
+        <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+          {item.restaurant_info.city}
+        </div>   
+      );
+    }
   }
   //data which entered on input when selected item
   getItemValueCity(item){
-      return `${item.restaurant_info.city}, ${item.restaurant_info.state}`;
+      if (item.restaurant_info.state && item.restaurant_info.state.length > 0) {
+        return `${item.restaurant_info.city}, ${item.restaurant_info.state}`;
+      }
+      else {
+        return `${item.restaurant_info.city}`;
+      }
   }
 
   //data which entered on input when selected item
+  //return `${item.restaurant_info.name} - ${item.restaurant_info.city}, ${item.restaurant_info.state}`;
   getItemValue(item){
     //
-      return `${item.restaurant_info.name} - ${item.restaurant_info.city}, ${item.restaurant_info.state}`;
+      return `${item.restaurant_info.name}`;
   }
   
   //show preloader and after show picture with phone
