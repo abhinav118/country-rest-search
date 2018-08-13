@@ -1,13 +1,37 @@
 import React, { Component } from 'react';
+import {
+  Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter,
+  Switch
+} from "react-router-dom";
 import phone from './phone.png';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.css";
+import createHistory from 'history/createBrowserHistory';
 import { Navbar, NavItem, Nav, Grid, Row, Col } from "react-bootstrap";
 import Autocomplete from 'react-autocomplete';
+
+const history = createHistory();
 
 const fetch = require('react-native-cancelable-fetch');
 
 class App extends Component {
+  render () {
+     return (
+       <Router history={history}>
+         <Switch>
+           <Route exact path='/' component={Main} />
+           <Route path='/bot' component={Bot} />
+         </Switch>
+       </Router>
+       //
+     )
+  }
+}
+class Main extends Component {
   constructor(props, context) {
       super(props, context);
       this.state = {
@@ -16,7 +40,8 @@ class App extends Component {
         autocompleteData: [
         ],
         status: "main",
-        fetchStatus: false
+        fetchStatus: false,
+        id: ""
      };
 
     this.onChange = this.onChange.bind(this);
@@ -61,6 +86,7 @@ class App extends Component {
     fetch('/api/name?data='+e.target.value+'&city='+document.querySelector("#city").value+'', null, this)
     .then(res => res.json())
     .then(data => {
+      console.log(data);
       this.setState({
         autocompleteData: data,
         fetchStatus: false
@@ -114,6 +140,7 @@ class App extends Component {
     }
     //var s = val.split(' - ');
     this.setState({
+      id: mass[0].merchant_id,
       valueCity: city,
       valueRestorant: val
     });
@@ -125,7 +152,7 @@ class App extends Component {
         autocompleteData: []
       });
     this.setState({
-      valueCity: val
+      valueCity: val,
     });
   }
   validate (e) {
@@ -179,14 +206,15 @@ class App extends Component {
   //show preloader and after show picture with phone
 
   goWidget () {
-    if (this.state.valueCity != "" && this.state.valueRestorant != "") {
+    if (this.state.valueCity != "" && this.state.valueRestorant != "" && this.state.id != "") {
       this.setState({
         status: "preloader"
       });
       setTimeout(() => {
-        this.setState({
-          status: "widget"
-        });
+          history.push({
+            pathname: '/bot',
+            search: '?id='+this.state.id,
+          })
       }, 4000);
     }
     else {
@@ -261,6 +289,29 @@ class App extends Component {
       </div>
       : ""
       }
+      </div>
+    );
+  }
+}
+
+class Bot extends Component {
+  constructor(props, context) {
+      super(props, context);
+      this.state = {} 
+  }
+ 
+  render() {
+    return (
+      <div>
+        <div className="widget">
+          <Grid>
+            <Row>
+              <Col md={12}>
+                    <img src={phone}></img>    
+              </Col>  
+            </Row>
+          </Grid>
+        </div>
       </div>
     );
   }
