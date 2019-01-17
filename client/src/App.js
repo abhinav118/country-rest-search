@@ -216,8 +216,11 @@ class Main extends Component {
             search: '?id='+this.state.id,
           })
       }, 4000);
-    }
-    else {
+    } else if(this.state.valueCity != "" && this.state.valueRestorant != "" ) {
+      const SCRAPING_SOURCE = 'http://35.237.231.42'
+
+      window.location.replace(SCRAPING_SOURCE)
+    } else {
       document.querySelector(".search-div").style.borderColor = "red";
       document.querySelector(".search-div input").style.borderColor = "red";
     }
