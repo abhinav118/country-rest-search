@@ -76,13 +76,4 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
-// {
-//     "server": "ds145091-a0.mlab.com",
-//     "server2": "ds145091-a1.mlab.com",
-//     "port": 45091,
-//     "db":{
-//         "name": "heroku_ckbhgr9b_gcloud",
-//         "user": "abhi.joyup",
-//         "password": "M33tj0y^p"
-//     }
-// }
+
